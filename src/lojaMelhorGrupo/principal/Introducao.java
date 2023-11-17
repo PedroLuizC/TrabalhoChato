@@ -136,6 +136,8 @@ public class Introducao {
                     break;
                 case 3:
                     System.out.println(menuFornecedor);
+                    Fornecedor fara = new Fornecedor();
+                    fara.executarLoopFornecedor();
                     voltarvoltar();
                     break;
                 case 4:

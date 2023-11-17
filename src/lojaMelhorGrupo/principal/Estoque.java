@@ -8,19 +8,18 @@ import java.util.Scanner;
 
 public class Estoque implements Geral{
 
-    private List<Produto> cria;
     private int quantidade;
     private String armazem;
     private String numeroDaPrateleira;
 
     private String nomeDoEstoque;
 
-    private int quantidadeProdutos;
+    //private int quantidadeProdutos;
 
-    private int quantidadeDeEstoques;
-    private static int quebraLoopEstoque;
+    private int quebraLoopEstoque;
     private String nomeDoProduto;
 
+    private boolean continuarCadastro = true;
 
     // Area dos Construtores
 
@@ -37,7 +36,8 @@ public class Estoque implements Geral{
     // area das listas
 
     private List<Estoque> estoques = new ArrayList<>();
-    List<Produto> produtos = Produto.getProdutos();
+
+    private List<Produto> produtos = Produto.getProdutos();
 
     // Area dos Gets and setters
 
@@ -73,22 +73,6 @@ public class Estoque implements Geral{
         this.nomeDoEstoque = nomeDoEstoque;
     }
 
-    public int getQuantidadeProdutos() {
-        return quantidadeProdutos;
-    }
-
-    public void setQuantidadeProdutos(int quantidadeProdutos) {
-        this.quantidadeProdutos = quantidadeProdutos;
-    }
-
-    public int getQuantidadeDeEstoques() {
-        return quantidadeDeEstoques;
-    }
-
-    public void setQuantidadeDeEstoques(int quantidadeDeEstoques) {
-        this.quantidadeDeEstoques = quantidadeDeEstoques;
-    }
-
     public String getNomeDoProduto() {
         return nomeDoProduto;
     }
@@ -106,51 +90,54 @@ public class Estoque implements Geral{
         String nomeDoEstoque = scanner.nextLine();
         setNomeDoEstoque(nomeDoEstoque);
 
-        System.out.print("Digite a quantidade de produtos a serem adicionados ao estoque: ");
-        quantidadeProdutos = scanner.nextInt();
-        scanner.nextLine();
+        do {
+            for (Produto produto : produtos) {
 
-        Produto produtoEncontrado = null;
+                System.out.println("\nDigite o nome do Produto: ");
+                this.nomeDoProduto = scanner.nextLine();
 
-        for (Produto produto : produtos) {
-            System.out.println("\nDigite o nome do Produto: ");
-            this.nomeDoProduto = scanner.nextLine();
+                if (produto.getNomeProduto().equalsIgnoreCase(nomeDoProduto)) {
 
-            if (produto.getNomeProduto().equalsIgnoreCase(nomeDoProduto)) {
-                produtoEncontrado = produto;
+                    System.out.println("Digite o nome do Armazém:");
+                    this.armazem = scanner.nextLine();
 
-                System.out.println("Digite o nome do Armazém:");
-                this.armazem = scanner.nextLine();
+                    System.out.println("Digite o número da prateleira:");
+                    this.numeroDaPrateleira = scanner.nextLine();
+
+                    System.out.print("Digite a quantidade do produto: ");
+                    this.quantidade = scanner.nextInt();
+                    scanner.nextLine();
+
+                    Estoque gera = new Estoque(quantidade,armazem,numeroDaPrateleira,nomeDoEstoque,nomeDoProduto);
+                    estoques.add(gera);
+
+                    System.out.println("\nProduto registrado com sucesso!");
+                    System.out.println("\nInformações: ");
+                    System.out.println("\n***********************");
+                    System.out.println("Armazem: " + getArmazem());
+                    System.out.println("Produto: " + produto.getNomeProduto());
+                    System.out.println("quantidade: " + getQuantidade());
+                    System.out.println("Prateleira: " + getNumeroDaPrateleira());
+                    System.out.println("***********************");
+
+                } else {
+                    System.out.println("Nome do produto não encontrado!");
+                }
+                System.out.println("\nDeseja criar colocar outro produto no Estoque?(S/N)");
+                String resposta = scanner.nextLine().toLowerCase();
 
 
-                System.out.println("Digite o número da prateleira:");
-                this.numeroDaPrateleira = scanner.nextLine();
-
-
-                System.out.print("Digite a quantidade do produto: ");
-                this.quantidade = scanner.nextInt();
-                scanner.nextLine();
-
-                Estoque gera = new Estoque(quantidade,armazem,numeroDaPrateleira,nomeDoEstoque,nomeDoProduto);
-                estoques.add(gera);
-
-                System.out.println("\nProduto registrado com sucesso!");
-                System.out.println("\nInformações: ");
-                System.out.println("\n***********************");
-                System.out.println("Armazem: " + getArmazem());
-                System.out.println("Produto: " + produto.getNomeProduto());
-                System.out.println("quantidade: " + getQuantidade());
-                System.out.println("Prateleira: " + getNumeroDaPrateleira());
-                System.out.println("***********************");
-
+                if (resposta.equals("n")) {
+                    continuarCadastro = false;
+                }
             }
-        }
 
-        if (produtoEncontrado != null) {
-        } else {
-            System.out.println("Produto com o nome '" + nomeDoProduto + "' não encontrado na lista de produtos.");
-        }
+
+
+        } while (continuarCadastro);
+
     }
+
 
     public void listar(){
         Scanner listando = new Scanner(System.in);

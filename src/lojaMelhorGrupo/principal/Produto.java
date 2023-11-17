@@ -13,7 +13,8 @@ import java.util.Scanner;
         private String codigo;
         private String nomeProduto;
         private String descricao;
-        //private Fornecedor fornecedor;
+
+        private Fornecedor fornecedor;
         private String nomeFornecedor;
         private int quebraLoopProduto;
         private boolean continuarCadastro = true;
@@ -40,6 +41,7 @@ import java.util.Scanner;
         // Area das listas
 
         private static List<Produto> produtos = new ArrayList<>();
+        //private static List<Fornecedor> fornecedores = new ArrayList<>();
 
         // Area dos Gets and setters
 
@@ -100,8 +102,28 @@ import java.util.Scanner;
             Produto.produtos = produtos;
         }
 
-        // Area dos metodos
+        /*
+        public static List<Fornecedor> getFornecedores() {
+            return fornecedores;
+        }
 
+        public static void setFornecedores(List<Fornecedor> fornecedores) {
+            Produto.fornecedores = fornecedores;
+        }
+        */
+
+        // Area dos metodos
+        public void confirmarFornecedor(){
+           /* Scanner rapido = new Scanner(System.in);
+            System.out.println("digite o nome do fornecedor: ");
+            String nome = rapido.nextLine();
+            System.out.println("Nome: "+ fornecedor.getNomePessoal());
+            for (Fornecedor fornece: fornecedores){
+                if (fornece.getNomePessoal().equalsIgnoreCase(nome)){
+                    System.out.println("Acertou!");
+                }
+            }*/
+        }
         @Override
         public void cadastrar() {
 
@@ -117,7 +139,6 @@ import java.util.Scanner;
                 descricao = faz.nextLine();
                 System.out.println("Nome do Fornecedor: ");
                 nomeFornecedor = faz.nextLine();
-
                 Produto cria = new Produto(idProduto,codigo,nomeProduto,descricao,nomeFornecedor,dataFormatada);
                 produtos.add(cria);
                 System.out.println("Produto gerado com sucesso!");
@@ -226,7 +247,8 @@ import java.util.Scanner;
                 switch (quebraLoopProduto){
 
                     case 1:
-                        cadastrar();
+                        //cadastrar();
+                        confirmarFornecedor();
                         System.out.println(c.getMenuProduto());
                         break;
                     case 2:
