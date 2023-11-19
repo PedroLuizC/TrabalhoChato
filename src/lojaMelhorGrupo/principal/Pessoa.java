@@ -1,8 +1,5 @@
 package lojaMelhorGrupo.principal;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 public abstract class Pessoa {
    private String id;
    private String nomePessoal;
@@ -17,18 +14,13 @@ public abstract class Pessoa {
    private String telefone;
    private String email;
    private String dataNascimento;
-
-   // Configuração da data
-    LocalDateTime dataCadastroPessoa = LocalDateTime.now();
-    DateTimeFormatter dataEstilosa = DateTimeFormatter.ofPattern("E, MMM dd yyyy");
-    private String dataFormatada = dataCadastroPessoa.format(dataEstilosa);
+   private String dataCadastro;
 
     // Area dos Construtores
 
-    public Pessoa() {
-        super();
-    }
-    public Pessoa(String id, String nomePessoal, String cnpj, String logradouro, String bairro, String cidade, String estado, String cep, String cpf, String rg, String telefone, String email, String dataNascimento, String dataFormatada) {
+    public Pessoa (){}
+
+    public Pessoa(String id, String nomePessoal, String cnpj, String logradouro, String bairro, String cidade, String estado, String cep, String cpf, String rg, String telefone, String email, String dataNascimento) {
         this.id = id;
         this.nomePessoal = nomePessoal;
         this.cnpj = cnpj;
@@ -42,7 +34,6 @@ public abstract class Pessoa {
         this.telefone = telefone;
         this.email = email;
         this.dataNascimento = dataNascimento;
-        this.dataFormatada = dataFormatada;
     }
 
 
@@ -145,19 +136,19 @@ public abstract class Pessoa {
         this.email = email;
     }
 
-    public String getDataFormatada() {
-        return dataFormatada;
-    }
-
-    public void setDataFormatada(String dataFormatada) {
-        this.dataFormatada = dataFormatada;
-    }
-
     public String getDataNascimento() {
         return dataNascimento;
     }
 
     public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    public String getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(String dataCadastro) {
+        this.dataCadastro = dataCadastro;
     }
 }

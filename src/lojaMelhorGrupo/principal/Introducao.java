@@ -3,9 +3,11 @@ package lojaMelhorGrupo.principal;
 import java.util.Scanner;
 
 public class Introducao {
-    private int quebraLoop;
+   /* private int quebraLoop;
     private int voltar;
-    private String menu = """
+
+    public static String trazmenus(){
+         String menu = """
                 \n********** Armazem Melhor Grupo **********
                 
                 Escolha:
@@ -17,6 +19,10 @@ public class Introducao {
                 5- Sair.
                 \n******************************************
                 """;
+        return menu;
+
+    }
+
 
     private String menuProduto = """
                 \n ***********
@@ -72,9 +78,6 @@ public class Introducao {
 
     // Area dos Gets and setters
 
-    public String getMenu() {
-        return menu;
-    }
 
     public String getMenuProduto() {
         return menuProduto;
@@ -100,20 +103,7 @@ public class Introducao {
 
     Scanner ler = new Scanner(System.in);
 
-    public void executarMenu(){
-        System.out.println(getMenu());
-    }
 
-    public void voltarvoltar(){
-        if (voltar == 5) {
-            introduz();
-        }
-    }
-
-    public void introduz(){
-        executarMenu();
-        executarLoop();
-    }
 
     public void executarLoop(){
         while (quebraLoop != 5) {
@@ -126,33 +116,33 @@ public class Introducao {
                     System.out.println(menuProduto);
                     Produto faz = new Produto();
                     faz.executarLoopProduto();
-                    voltarvoltar();
+                    //voltarvoltar();
                     break;
                 case 2:
                     System.out.println(menuEstoque);
                     Estoque vaiFazer = new Estoque();
                     vaiFazer.executarLoopEstoque();
-                    voltarvoltar();
+                    //voltarvoltar();
                     break;
                 case 3:
                     System.out.println(menuFornecedor);
                     Fornecedor fara = new Fornecedor();
                     fara.executarLoopFornecedor();
-                    voltarvoltar();
+                    //voltarvoltar();
                     break;
                 case 4:
                     System.out.println(sobreNos);
-                    voltarvoltar();
+                    //voltarvoltar();
                     break;
                 case 5:
                     System.out.println("Encerrando...");
                     break;
                 default:
                     System.out.println("Voce escolheu um numero invalido.");
-                    executarMenu();
+                    //executarMenu();
             }
         }
     }
 
-
+*/
 }
