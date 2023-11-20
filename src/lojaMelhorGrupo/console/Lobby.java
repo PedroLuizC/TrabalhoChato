@@ -341,15 +341,16 @@ public class Lobby {
 
         do {
             Produto produto = new Produto();
-            System.out.println("Digite o nome do forncedor:");
-            String nomeProcurado = pegaDados.nextLine();
 
-            for (Fornecedor fornece: fornecedores){
-                if (fornece.getNomePessoal().equalsIgnoreCase(nomeProcurado)){
-                    produto.setNomeFornecedor(nomeProcurado);
-                }
 
+            System.out.println("Lista de fornecedores cadastrados:");
+            for (Fornecedor listaDefornecedores: fornecedores){
+                System.out.println("\nNome: " + listaDefornecedores.getNomePessoal() +".");
             }
+
+            System.out.println("\nDigite o nome do forncedor que está na lista:");
+            produto.setNomeFornecedor(pegaDados.nextLine());
+
 
             System.out.println("Digite o nome do produto: ");
             produto.setNomeProduto(pegaDados.nextLine());
@@ -490,22 +491,17 @@ public class Lobby {
 
         do {
             Estoque estoque = new Estoque();
-            System.out.println("Digite o nome do produto para adicionar ao estoque: ");
-            String nomeProcurado = pegaDados.nextLine();
 
-            for (Produto produto: produtos){
-                if (produto.getNomeProduto().equalsIgnoreCase(nomeProcurado)){
-                    estoque.setNomeDoProduto(nomeProcurado);
-                }
+            System.out.println("Lista de produtos registrados: ");
+            for(Produto listaDeProdutos: produtos){
+                System.out.println("Nome: " + listaDeProdutos.getNomeProduto());
             }
+            System.out.println("Digite o nome do produto disponivel na lista: ");
+            estoque.setNomeDoProduto(pegaDados.nextLine());
 
-            System.out.println("Digite o preço do produto: ");
-            double precoProcurado = pegaDados.nextDouble();
-            pegaDados.nextLine();
-
-            for (Produto produto2: produtos){
-                if (produto2.getPreco() == precoProcurado){
-                estoque.setPrecoNoEstoque(precoProcurado);
+            for (Produto listaDePRodutosPreco: produtos){
+                if (listaDePRodutosPreco.getNomeProduto().equalsIgnoreCase(estoque.getNomeDoProduto())){
+                    estoque.setPrecoNoEstoque(listaDePRodutosPreco.getPreco());
                 }
             }
 
