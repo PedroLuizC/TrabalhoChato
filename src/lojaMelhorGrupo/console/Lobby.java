@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 public class Lobby {
 
+    // aconselho a olharem as classes primeiro e perceber seus atributos.
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
@@ -21,7 +22,7 @@ public class Lobby {
         System.out.println("\n\nSejam bem vindos ao estoque Melhor Grupo!");
 
         do {
-            // Menu Principal
+                                // MENU PRINCIPAL
             System.out.println("\n******************************************");
             System.out.println("\nEscolha:");
             System.out.println("\n1- Opções para Fornecedor.");
@@ -35,7 +36,7 @@ public class Lobby {
 
             switch (escolhaMenu){
 
-                // Menu do Fornecedor
+                            // MENU DO FORNECEDOR
                 case 1:
                  do {
 
@@ -65,7 +66,7 @@ public class Lobby {
                     }
                 }while (escolhaSubMenu != 0);
                     break;
-                // Menu do Produto1
+                                // MENU DO PRODUTO
                 case 2:
                     do {
                         System.out.println("\n ***********");
@@ -96,7 +97,7 @@ public class Lobby {
                     }while (escolhaSubMenu !=0);
                     break;
 
-                // Menu do Estoque
+                                // MENU DO ESTOQUE
                 case 3:
                     do {
 
@@ -128,7 +129,7 @@ public class Lobby {
                 }while (escolhaSubMenu != 0);
                 break;
 
-                // Menu dos integrantes
+                            // MENU DOS INTEGRANTES
                 case 4:
                     do {
                         System.out.println("\n**********************");
@@ -154,7 +155,7 @@ public class Lobby {
     }
 
 
-    // Area das Listas
+    // Area das listas - o que permite ter mais de um elemento.
 
     static List<Fornecedor> fornecedores = new ArrayList<>();
     static List<Produto> produtos = new ArrayList<>();
@@ -164,8 +165,8 @@ public class Lobby {
 
     public static void cadastrarFornecedor() {
         boolean continuarCadastro = true;
-        Scanner pegaDados = new Scanner(System.in);
-
+        Scanner pegaDados = new Scanner(System.in); // o que se utiliza para pedir dados atraves do console.
+            // O "do" permite criar mais de um fornecedor seguido.
         do {
             Fornecedor fornecedor= new Fornecedor();
             System.out.println("Digite o id(6 números): ");
@@ -203,7 +204,7 @@ public class Lobby {
 
             if (resposta.equals("n")) {
                 continuarCadastro = false;
-            }
+            } // quebra o loop
 
         } while (continuarCadastro);
 
@@ -214,36 +215,42 @@ public class Lobby {
         boolean confirmacao = true;
         System.out.println("Deseja a lista: \n\n1- Simplificada. \n2- Detalhada. ");
         int facilidade = escolha.nextInt();
-
+        // O "do" estar servindo aqui meramente para algo estetico. Onde a pessoa precisa apertar "zero" para sair.
         do {
+            /* Aqui somente caso a pessoa queira uma lista simplificada ou completa.
+               O que esse "Fornecedor forneceLista: fornecedores" está fazendo é a mesma coisa que:
+               for(int i = 0; i < fornecedores; i++);
+               ou seja, o for tá repetindo a busca e acrescentando um valor "i++" para pegar o proximo nome da lista.
+
+            */
             if (facilidade == 1) {
                 System.out.println("Fornecedores registrados: ");
-                for (Fornecedor criaFornecedor: fornecedores) {
+                for (Fornecedor forneceLista : fornecedores) {
                     System.out.println("\n*********************");
-                    System.out.println("Id:" + criaFornecedor.getId());
-                    System.out.println("Nome do fornecedor: " + criaFornecedor.getNomePessoal());
-                    System.out.println("CPF: " + criaFornecedor.getCpf());
-                    System.out.println("Email: " + criaFornecedor.getEmail());
+                    System.out.println("Id:" + forneceLista.getId());
+                    System.out.println("Nome do fornecedor: " + forneceLista.getNomePessoal());
+                    System.out.println("CPF: " + forneceLista.getCpf());
+                    System.out.println("Email: " + forneceLista.getEmail());
                     System.out.println("*********************");
                 }
             } else if (facilidade == 2) {
                 System.out.println("Fornecedores registrados: ");
-                for (Fornecedor criaFornecedor: fornecedores) {
+                for (Fornecedor forneceLista : fornecedores) {
                     System.out.println("\n*********************");
-                    System.out.println("Nome do fornecedor: " + criaFornecedor.getNomePessoal());
-                    System.out.println("Id:" + criaFornecedor.getId());
-                    System.out.println("CNPJ:" + criaFornecedor.getCnpj());
-                    System.out.println("Logradouro:" + criaFornecedor.getLogradouro());
-                    System.out.println("Bairro:" + criaFornecedor.getBairro());
-                    System.out.println("Cidade: " + criaFornecedor.getCidade());
-                    System.out.println("Estado: " + criaFornecedor.getEstado());
-                    System.out.println("CEP: " + criaFornecedor.getCep());
-                    System.out.println("CPF: " + criaFornecedor.getCpf());
-                    System.out.println("RG: " + criaFornecedor.getRg());
-                    System.out.println("Telefone: " + criaFornecedor.getTelefone());
-                    System.out.println("Email: " + criaFornecedor.getEmail());
-                    System.out.println("Data de nascimento: " + criaFornecedor.getDataNascimento());
-                    System.out.println("Data de cadastro: " + criaFornecedor.getDataCadastroFornecedor());
+                    System.out.println("Nome do fornecedor: " + forneceLista.getNomePessoal());
+                    System.out.println("Id:" + forneceLista.getId());
+                    System.out.println("CNPJ:" + forneceLista.getCnpj());
+                    System.out.println("Logradouro:" + forneceLista.getLogradouro());
+                    System.out.println("Bairro:" + forneceLista.getBairro());
+                    System.out.println("Cidade: " + forneceLista.getCidade());
+                    System.out.println("Estado: " + forneceLista.getEstado());
+                    System.out.println("CEP: " + forneceLista.getCep());
+                    System.out.println("CPF: " + forneceLista.getCpf());
+                    System.out.println("RG: " + forneceLista.getRg());
+                    System.out.println("Telefone: " + forneceLista.getTelefone());
+                    System.out.println("Email: " + forneceLista.getEmail());
+                    System.out.println("Data de nascimento: " + forneceLista.getDataNascimento());
+                    System.out.println("Data de cadastro: " + forneceLista.getDataCadastroFornecedor());
                     System.out.println("*********************");
                 }
             }
@@ -264,28 +271,35 @@ public class Lobby {
         System.out.println("Digite o nome do fornecedor: ");
         String nomeProcurado = scanner.nextLine();
 
+        /* Aqui, tem uma parte nova, o "fornecedorEncontrado". Ele só está resolvendo o erro que ocorre no If-else dentro
+        de um for. Sem ele, caso fossemos fazer um fornecedor novo após ter saido do metodo de cadastro, o for não estaria
+        reconhecendo o novo elemento, mesmo o proprio estando lá. Indo sempre para o else.
 
+        Por isso, o else está em outro if que só tem o trabalho de saber se existe o fornecedor ou não.
+
+         */
         do {
-            for (Fornecedor fornecedor : fornecedores) {
-
-                if (fornecedor.getNomePessoal().equals(nomeProcurado)) {
+            // Pelo que entendi: "Fornecedor" classe + variavel(qualquer coisa) + nome da lista existente.
+            for (Fornecedor buscaFornecedor : fornecedores) {
+                // o if está confirmando se o nome que colocamos existe na lista de fornecedores.
+                if (buscaFornecedor.getNomePessoal().equals(nomeProcurado)) {
                     fornecedorEncontrado = true;
 
-                    System.out.println("\nFornecedor encontrado: " + fornecedor.getNomePessoal());
+                    System.out.println("\nFornecedor encontrado: " + buscaFornecedor.getNomePessoal());
                     System.out.println("\n*********************");
-                    System.out.println("Id: " + fornecedor.getId());
-                    System.out.println("CNPJ: " + fornecedor.getCnpj());
-                    System.out.println("Logradouro: " + fornecedor.getLogradouro());
-                    System.out.println("Bairro: " + fornecedor.getBairro());
-                    System.out.println("Cidade: " + fornecedor.getCidade());
-                    System.out.println("Estado: " + fornecedor.getEstado());
-                    System.out.println("CEP: " + fornecedor.getCep());
-                    System.out.println("CPF: " + fornecedor.getCpf());
-                    System.out.println("RG: " + fornecedor.getRg());
-                    System.out.println("Telefone: " + fornecedor.getTelefone());
-                    System.out.println("Email: " + fornecedor.getEmail());
-                    System.out.println("Data de nascimento: " + fornecedor.getDataNascimento());
-                    System.out.println("Data de cadastro: " + fornecedor.getDataCadastroFornecedor());
+                    System.out.println("Id: " + buscaFornecedor.getId());
+                    System.out.println("CNPJ: " + buscaFornecedor.getCnpj());
+                    System.out.println("Logradouro: " + buscaFornecedor.getLogradouro());
+                    System.out.println("Bairro: " + buscaFornecedor.getBairro());
+                    System.out.println("Cidade: " + buscaFornecedor.getCidade());
+                    System.out.println("Estado: " + buscaFornecedor.getEstado());
+                    System.out.println("CEP: " + buscaFornecedor.getCep());
+                    System.out.println("CPF: " + buscaFornecedor.getCpf());
+                    System.out.println("RG: " + buscaFornecedor.getRg());
+                    System.out.println("Telefone: " + buscaFornecedor.getTelefone());
+                    System.out.println("Email: " + buscaFornecedor.getEmail());
+                    System.out.println("Data de nascimento: " + buscaFornecedor.getDataNascimento());
+                    System.out.println("Data de cadastro: " + buscaFornecedor.getDataCadastroFornecedor());
                     System.out.println("*********************");
 
                 }
@@ -312,31 +326,33 @@ public class Lobby {
         String nomeDelete = scanner.nextLine();
         boolean forncedorEncontrado = false;
 
-            for (Fornecedor f : fornecedores) {
-                if (f.getNomePessoal().equals(nomeDelete)) {
+            for (Fornecedor fornecedorParaDeletar : fornecedores) {
+                if (fornecedorParaDeletar.getNomePessoal().equals(nomeDelete)) {
                     forncedorEncontrado = true;
                     System.out.println("\nFornecedor encontrado: ");
                     System.out.println("\n*********************");
-                    System.out.println("Nome do fornecedor: " + f.getNomePessoal());
-                    System.out.println("Id: " + f.getId());
-                    System.out.println("CNPJ: " + f.getCnpj());
-                    System.out.println("Logradouro: " + f.getLogradouro());
-                    System.out.println("Bairro: " + f.getBairro());
-                    System.out.println("Cidade: " + f.getCidade());
-                    System.out.println("Estado: " + f.getEstado());
-                    System.out.println("CEP: " + f.getCep());
-                    System.out.println("CPF: " + f.getCpf());
-                    System.out.println("RG: " + f.getRg());
-                    System.out.println("Telefone: " + f.getTelefone());
-                    System.out.println("Email: " + f.getEmail());
-                    System.out.println("Data de nascimento: " + f.getDataNascimento());
-                    System.out.println("Data de cadastro: " + f.getDataCadastroFornecedor());
+                    System.out.println("Nome do fornecedor: " + fornecedorParaDeletar.getNomePessoal());
+                    System.out.println("Id: " + fornecedorParaDeletar.getId());
+                    System.out.println("CNPJ: " + fornecedorParaDeletar.getCnpj());
+                    System.out.println("Logradouro: " + fornecedorParaDeletar.getLogradouro());
+                    System.out.println("Bairro: " + fornecedorParaDeletar.getBairro());
+                    System.out.println("Cidade: " + fornecedorParaDeletar.getCidade());
+                    System.out.println("Estado: " + fornecedorParaDeletar.getEstado());
+                    System.out.println("CEP: " + fornecedorParaDeletar.getCep());
+                    System.out.println("CPF: " + fornecedorParaDeletar.getCpf());
+                    System.out.println("RG: " + fornecedorParaDeletar.getRg());
+                    System.out.println("Telefone: " + fornecedorParaDeletar.getTelefone());
+                    System.out.println("Email: " + fornecedorParaDeletar.getEmail());
+                    System.out.println("Data de nascimento: " + fornecedorParaDeletar.getDataNascimento());
+                    System.out.println("Data de cadastro: " + fornecedorParaDeletar.getDataCadastroFornecedor());
                     System.out.println("*********************");
                     System.out.println("\nTem certeza que deseja deletar este fornecedor? (S/N)");
                     String certeza = scanner.nextLine().toLowerCase();
 
                     if (certeza.equals("s")) {
-                        fornecedores.remove(f);
+                        // remove deleta o elemento fornecedor. Caso queiramos ele de novo, teriamos que cria-lo
+                        // novamente.
+                        fornecedores.remove(fornecedorParaDeletar);
                         System.out.println("\nFornecedor deletado com sucesso.");
                         return;
                     }
@@ -361,11 +377,11 @@ public class Lobby {
 
         do {
             Produto produto = new Produto();
-            // confere se tem pelo menos fornecedor cadastrado.
+            // confere se tem pelo menos um fornecedor cadastrado.
             if (fornecedores.isEmpty()){
                 System.out.println("Não há fornecedores cadastrados. Deseja criar um?(S/N)");
                 String resposta1 = pegaDados.nextLine().toLowerCase();
-
+                    // pergunta se quer cadastrar um.
                 if (resposta1.equals("s")) {
                     cadastrarFornecedor();
                 } else {
@@ -373,6 +389,7 @@ public class Lobby {
                 }
 
             } else {
+                // oferece uma lista de fornecedores cadastrados.
                 System.out.println("Lista de fornecedores cadastrados:");
                 for (Fornecedor listaDefornecedores: fornecedores){
                     System.out.println("\nNome: " + listaDefornecedores.getNomePessoal() +".");
@@ -422,6 +439,7 @@ public class Lobby {
         } while (continuarCadastro);
     }
 
+    // Daqui para baixo ocorre as mesmas coisas com somente algumas alterações.
     public static void listarProdutos() {
         Scanner escolha = new Scanner(System.in);
         System.out.println("Deseja a lista:\n\n1-Simplificada.\n2-Detalhada. ");
@@ -463,7 +481,6 @@ public class Lobby {
                 confirmacao = false;
             }
         } while (confirmacao);
-
 
     }
 
@@ -533,6 +550,12 @@ public class Lobby {
 
     // AREA DOS METODOS PARA ESTOQUE!
 
+    /* Em algumas partes haverá uma linha vazia chamada "pegaDados.nextline()" depois de uma de outra comando para
+    inserir dados no console. Isso é para resolver outro bug.
+    ex: veja a linha 708 e 709.
+
+     */
+
     public static void adicionarEstoqueDeProdutos() {
 
         String nomeProcurado;
@@ -540,10 +563,9 @@ public class Lobby {
         boolean continuarCadastros = true;
         Scanner pegaDados = new Scanner(System.in);
 
-
         do {
             Estoque estoque = new Estoque();
-
+            // confere se tem pelo menos um produto registrado.
             if (produtos.isEmpty()){
                 System.out.println("Não há produtos cadastrados.\n Você deseja criar um?(S/N)");
                 String resposta1 = pegaDados.nextLine().toLowerCase();
@@ -564,9 +586,10 @@ public class Lobby {
             System.out.println("Digite o nome do produto cadastrado: ");
             nomeProcurado = pegaDados.nextLine();
 
+            // confere se o nome bate com os produtos registrados.
             do {
-                for (Produto confereProduto: produtos){
-                    if (confereProduto.getNomeProduto().equalsIgnoreCase(nomeProcurado)){
+                for (Produto confereNomeDoProduto: produtos){
+                    if (confereNomeDoProduto.getNomeProduto().equalsIgnoreCase(nomeProcurado)){
                         produtoEncontrado = true;
                         break;
                     }
@@ -579,6 +602,7 @@ public class Lobby {
             }while (!produtoEncontrado);
             estoque.setNomeDoProduto(nomeProcurado);
 
+            // puxa o preço automaticamente do produto selecionado.
             for (Produto listaDePRodutosPreco: produtos){
                 if (listaDePRodutosPreco.getNomeProduto().equalsIgnoreCase(estoque.getNomeDoProduto())){
                     estoque.setPrecoNoEstoque(listaDePRodutosPreco.getPreco());
@@ -607,25 +631,32 @@ public class Lobby {
         boolean confirmacao = true;
         System.out.println("************* Estoque Melhor Grupo ***********************");
 
-        do {
-            for (Estoque listaDoEstoque: estoques){
-                System.out.println("\n*********************");
-                System.out.println("Nome do produto: " + listaDoEstoque.getNomeDoProduto());
-                System.out.println("Armazem: " + listaDoEstoque.getArmazem());
-                System.out.println("quantidade: " + listaDoEstoque.getQuantidade());
-                System.out.println("Preço: " + listaDoEstoque.getPrecoNoEstoque());
-                System.out.println("Prateleira: " + listaDoEstoque.getNumeroDaPrateleira());
-                System.out.println("*********************");
-            }
+        if (estoques.isEmpty()){
+            System.out.println("Não há produtos disponiveis no momento.");
 
-            System.out.println("\n0-sair");
-            int resposta = scanner.nextInt();
+        } else {
 
-            if (resposta == 0){
-                confirmacao = false;
-            }
+            do {
+                for (Estoque listaDoEstoque: estoques){
+                    System.out.println("\n*********************");
+                    System.out.println("Nome do produto: " + listaDoEstoque.getNomeDoProduto());
+                    System.out.println("Armazem: " + listaDoEstoque.getArmazem());
+                    System.out.println("quantidade: " + listaDoEstoque.getQuantidade());
+                    System.out.println("Preço: " + listaDoEstoque.getPrecoNoEstoque());
+                    System.out.println("Prateleira: " + listaDoEstoque.getNumeroDaPrateleira());
+                    System.out.println("*********************");
+                }
 
-        }while (confirmacao);
+                System.out.println("\n0-sair");
+                int resposta = scanner.nextInt();
+
+                if (resposta == 0){
+                    confirmacao = false;
+                }
+
+            }while (confirmacao);
+
+        }
 
     }
 
@@ -704,40 +735,53 @@ public class Lobby {
 
     }
 
+        // AQUI ACONTECE UM SÉRIE DE CONFIRMAÇÕES!
+
     public static void removerEstoqueDeProdutos() {
         int novoValor;
+        boolean produtoNoEstoque = false;
         Scanner pegaDados = new Scanner(System.in);
 
         System.out.println("Digite o nome do produto que deseja remover do estoque: ");
         String nomeProcurado = pegaDados.nextLine();
 
             for (Estoque removeDoEstoque: estoques){
+                // Confere se o produto procurado está no estoque.
+                if (removeDoEstoque.getNomeDoProduto().equalsIgnoreCase(nomeProcurado)){
+                    // bloqueia caso a quantidade do produto for 0.
+                    if (removeDoEstoque.getQuantidade() == 0) {
+                        System.out.println("Produto com valor '0'. Por favor, adicione na opção 'Atualizar estoque de produtos'.");
+                    } else {
+                        System.out.println("Produto:" + nomeProcurado);
+                        System.out.println("Quantidade atual: " + removeDoEstoque.getQuantidade());
 
-                if (!removeDoEstoque.getNomeDoProduto().equalsIgnoreCase(nomeProcurado)){
-                    System.out.println("\nProduto no estoque Melhor Grupo de nome '" + nomeProcurado  + "' não foi encontrado.");
-                } else if (removeDoEstoque.getQuantidade() == 0) {
-                    System.out.println("Produto com valor 0, por favor, adicione na opção 'Atualizar estoque de produtos'.");
-                } else {
-                    System.out.println("Produto:" + nomeProcurado);
-                    System.out.println("Quantidade atual: " + removeDoEstoque.getQuantidade());
-                    System.out.println("Digite o valor que irá subtrair da quantidade atual: ");
-                    novoValor = pegaDados.nextInt();
+                        do {
+                            System.out.println("Digite o valor que irá subtrair da quantidade atual: ");
+                            novoValor = pegaDados.nextInt();
 
-                    if (novoValor > removeDoEstoque.getQuantidade()){
-                        System.out.println("Número maior que o permitido.");
-                        break;
-                    } else if (novoValor < 0){
-                        System.out.println("Número menor que o permitido.");
+                            // informa se tentarem por um valor maior que a quantidade tem.
+                            if (novoValor > removeDoEstoque.getQuantidade()) {
+                                System.out.println("Número maior que o permitido.");
+                                // se tentarem por um valor negativo.
+                            } else if (novoValor < 0) {
+                                System.out.println("Número menor que o permitido.");
+                            }
+
+                        }while (novoValor > removeDoEstoque.getQuantidade() || novoValor < 0);
+
+                        novoValor = removeDoEstoque.getQuantidade() - novoValor;
+                        removeDoEstoque.setQuantidade(novoValor);
+                        System.out.println("Valor atual: " + removeDoEstoque.getQuantidade());
+
+                        produtoNoEstoque = true;
                         break;
                     }
-
-                    novoValor = removeDoEstoque.getQuantidade() - novoValor;
-                    removeDoEstoque.setQuantidade(novoValor);
-                    System.out.println("valor atual: " + removeDoEstoque.getQuantidade());
                 }
             }
 
-
+        if (!produtoNoEstoque) {
+            System.out.println("\nProduto no estoque Melhor Grupo de nome '" + nomeProcurado + "' não foi encontrado.");
+        }
     }
 
 }

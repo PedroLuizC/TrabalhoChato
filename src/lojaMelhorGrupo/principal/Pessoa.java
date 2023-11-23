@@ -1,6 +1,8 @@
 package lojaMelhorGrupo.principal;
 
 public abstract class Pessoa {
+
+    // percebam que pessoa é abstrata.
    private String id;
    private String nomePessoal;
    private String cnpj;
