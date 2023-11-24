@@ -212,7 +212,7 @@ public class Lobby {
 
     public static void listarFornecedor() {
         Scanner escolha = new Scanner(System.in);
-        boolean confirmacao = true;
+        boolean confirmacaoParaSair = true;
         System.out.println("Deseja a lista: \n\n1- Simplificada. \n2- Detalhada. ");
         int facilidade = escolha.nextInt();
         // O "do" estar servindo aqui meramente para algo estetico. Onde a pessoa precisa apertar "zero" para sair.
@@ -255,19 +255,19 @@ public class Lobby {
                 }
             }
             System.out.println("\n0-sair");
-            int resposta = escolha.nextInt();
+            String resposta = escolha.nextLine().toLowerCase();
 
-            if (resposta == 0){
-                confirmacao = false;
+            if (resposta.equals("0")){
+                confirmacaoParaSair = false;
             }
-        }while (confirmacao);
+        }while (confirmacaoParaSair);
 
     }
 
     public static void buscarFornecedor() {
         Scanner scanner = new Scanner(System.in);
         boolean fornecedorEncontrado = false;
-        boolean confirmacao = true;
+        boolean confirmacaoParaSair = true;
         System.out.println("Digite o nome do fornecedor: ");
         String nomeProcurado = scanner.nextLine();
 
@@ -310,13 +310,12 @@ public class Lobby {
             }
 
                     System.out.println("\n0-sair");
-                    int resposta = scanner.nextInt();
+                    String resposta = scanner.nextLine().toLowerCase();
 
-                    if (resposta == 0){
-                    confirmacao = false;
+                    if (resposta.equals("0")){
+                    confirmacaoParaSair = false;
                     }
-        }while (confirmacao);
-
+        }while (confirmacaoParaSair);
 
     }
 
@@ -444,7 +443,7 @@ public class Lobby {
         Scanner escolha = new Scanner(System.in);
         System.out.println("Deseja a lista:\n\n1-Simplificada.\n2-Detalhada. ");
         int facilidade = escolha.nextInt();
-        boolean confirmacao = true;
+        boolean confirmacaoParaSair = true;
 
         do {
             if (facilidade ==1){
@@ -475,12 +474,12 @@ public class Lobby {
             }
 
             System.out.println("\n0-sair");
-            int resposta = escolha.nextInt();
+            String resposta = escolha.nextLine().toLowerCase();
 
-            if (resposta == 0){
-                confirmacao = false;
+            if (resposta.equals("0")){
+                confirmacaoParaSair = false;
             }
-        } while (confirmacao);
+        } while (confirmacaoParaSair);
 
     }
 
@@ -628,7 +627,7 @@ public class Lobby {
     }
     public static void listarProdutosDisponiveis(){
         Scanner scanner = new Scanner(System.in);
-        boolean confirmacao = true;
+        boolean confirmacaoParaSair = true;
         System.out.println("************* Estoque Melhor Grupo ***********************");
 
         if (estoques.isEmpty()){
@@ -651,10 +650,10 @@ public class Lobby {
                 int resposta = scanner.nextInt();
 
                 if (resposta == 0){
-                    confirmacao = false;
+                    confirmacaoParaSair = false;
                 }
 
-            }while (confirmacao);
+            }while (confirmacaoParaSair);
 
         }
 
@@ -686,6 +685,7 @@ public class Lobby {
                         System.out.println("0- desistir.");
                         System.out.println("\n*********************");
                         opcao = pegaDados.nextInt();
+
                         switch (opcao){
 
                             case 1:System.out.println("Preço: ");
@@ -724,7 +724,6 @@ public class Lobby {
                         System.out.println("Produto no estoque atualizado com sucesso!");
 
                     }
-
 
                 }
                 if (!produtoNoEstoqueEncontrado){
