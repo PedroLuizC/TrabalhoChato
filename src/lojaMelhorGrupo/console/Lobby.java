@@ -134,11 +134,11 @@ public class Lobby {
                     do {
                         System.out.println("\n**********************");
                         System.out.println("\nSócios:");
-                        System.out.println("\nVictor Silva");
-                        System.out.println("Pedro Luiz");
-                        System.out.println("Elton Vinicius");
-                        System.out.println("Melanni Eduarda");
-                        System.out.println("Guilherme Antonino");
+                        System.out.println("\nVictor Silva - 01387351");
+                        System.out.println("Pedro Luiz - 01457308");
+                        System.out.println("Elton Vinicius - 01440426");
+                        System.out.println("Melanni Eduarda - 01463902");
+                        System.out.println("Guilherme Antonino - 01424919");
                         System.out.println("\n**********************");
                         System.out.println("\n 0- Voltar.");
                         escolhaSubMenu = scanner.nextInt();
@@ -156,6 +156,7 @@ public class Lobby {
 
 
     // Area das listas - o que permite ter mais de um elemento.
+    // Sem ele, do jeito que o codigo foi feito, se criamos 2 fornecedores, o ultimo sobrescreveria o primeiro.
 
     static List<Fornecedor> fornecedores = new ArrayList<>();
     static List<Produto> produtos = new ArrayList<>();
@@ -164,7 +165,7 @@ public class Lobby {
     // AREA DOS METODOS PARA FORNECEDOR
 
     public static void cadastrarFornecedor() {
-        boolean continuarCadastro = true;
+        boolean continuarCadastrando= true;
         Scanner pegaDados = new Scanner(System.in); // o que se utiliza para pedir dados atraves do console.
             // O "do" permite criar mais de um fornecedor seguido.
         do {
@@ -196,35 +197,40 @@ public class Lobby {
             System.out.println("Digite a data de nascimento do fornecedor: ");
             fornecedor.setDataNascimento(pegaDados.nextLine());
 
+            // Aqui a lista "fornecedores" está adicionando a referência criada "Fornecedor".
+            // Ou seja, está pegando os dados coletados e atribuindo especifcamente.
             fornecedores.add(fornecedor);
             System.out.println("\nFornecedor cadastrado com sucesso.");
             System.out.println("\nDeseja criar outro Fornecedor?(S/N)");
             String resposta = pegaDados.nextLine().toLowerCase();
-
+            // toLowerCase() só deixa os dado String inserido em minuscula.
 
             if (resposta.equals("n")) {
-                continuarCadastro = false;
+                continuarCadastrando= false;
             } // quebra o loop
 
-        } while (continuarCadastro);
+        } while (continuarCadastrando);
 
     }
 
     public static void listarFornecedor() {
         Scanner escolha = new Scanner(System.in);
-        boolean confirmacaoParaSair = true;
+        boolean continuarNaOpcao = true;
         System.out.println("Deseja a lista: \n\n1- Simplificada. \n2- Detalhada. ");
-        int facilidade = escolha.nextInt();
+        int escolhaLista = escolha.nextInt();
+        escolha.nextLine();
         // O "do" estar servindo aqui meramente para algo estetico. Onde a pessoa precisa apertar "zero" para sair.
+
+
         do {
-            /* Aqui somente caso a pessoa queira uma lista simplificada ou completa.
+             /* Aqui somente caso a pessoa queira uma lista simplificada ou completa.
                O que esse "Fornecedor forneceLista: fornecedores" está fazendo é a mesma coisa que:
                for(int i = 0; i < fornecedores; i++);
                ou seja, o for tá repetindo a busca e acrescentando um valor "i++" para pegar o proximo nome da lista.
 
             */
-            if (facilidade == 1) {
-                System.out.println("Fornecedores registrados: ");
+            if (escolhaLista == 1) {
+                System.out.println("\nFornecedores registrados: ");
                 for (Fornecedor forneceLista : fornecedores) {
                     System.out.println("\n*********************");
                     System.out.println("Id:" + forneceLista.getId());
@@ -233,7 +239,8 @@ public class Lobby {
                     System.out.println("Email: " + forneceLista.getEmail());
                     System.out.println("*********************");
                 }
-            } else if (facilidade == 2) {
+
+            } else if (escolhaLista == 2) {
                 System.out.println("Fornecedores registrados: ");
                 for (Fornecedor forneceLista : fornecedores) {
                     System.out.println("\n*********************");
@@ -258,16 +265,16 @@ public class Lobby {
             String resposta = escolha.nextLine().toLowerCase();
 
             if (resposta.equals("0")){
-                confirmacaoParaSair = false;
+                continuarNaOpcao = false;
             }
-        }while (confirmacaoParaSair);
+        }while (continuarNaOpcao);
 
     }
 
     public static void buscarFornecedor() {
         Scanner scanner = new Scanner(System.in);
         boolean fornecedorEncontrado = false;
-        boolean confirmacaoParaSair = true;
+        boolean continuarNaOpcao = true;
         System.out.println("Digite o nome do fornecedor: ");
         String nomeProcurado = scanner.nextLine();
 
@@ -281,7 +288,7 @@ public class Lobby {
         do {
             // Pelo que entendi: "Fornecedor" classe + variavel(qualquer coisa) + nome da lista existente.
             for (Fornecedor buscaFornecedor : fornecedores) {
-                // o if está confirmando se o nome que colocamos existe na lista de fornecedores.
+                // o if está conferindo se o nome que colocamos existe na lista de fornecedores.
                 if (buscaFornecedor.getNomePessoal().equals(nomeProcurado)) {
                     fornecedorEncontrado = true;
 
@@ -313,9 +320,9 @@ public class Lobby {
                     String resposta = scanner.nextLine().toLowerCase();
 
                     if (resposta.equals("0")){
-                    confirmacaoParaSair = false;
+                    continuarNaOpcao = false;
                     }
-        }while (confirmacaoParaSair);
+        }while (continuarNaOpcao);
 
     }
 
@@ -368,7 +375,7 @@ public class Lobby {
 
     public static void cadastrarProduto() {
 
-        boolean continuarCadastro = true;
+        boolean continuarCadastrando= true;
         String nomeProcurado;
         boolean fornecedorEncontrado = false;
         Scanner pegaDados = new Scanner(System.in);
@@ -433,20 +440,21 @@ public class Lobby {
             String resposta2 = pegaDados.nextLine().toLowerCase();
 
             if (resposta2.equals("n")) {
-                continuarCadastro = false;
+                continuarCadastrando= false;
             }
-        } while (continuarCadastro);
+        } while (continuarCadastrando);
     }
 
     // Daqui para baixo ocorre as mesmas coisas com somente algumas alterações.
     public static void listarProdutos() {
         Scanner escolha = new Scanner(System.in);
+        boolean continuarNaOpcao = true;
         System.out.println("Deseja a lista:\n\n1-Simplificada.\n2-Detalhada. ");
-        int facilidade = escolha.nextInt();
-        boolean confirmacaoParaSair = true;
+        int escolhaLista = escolha.nextInt();
+        escolha.nextLine();
 
         do {
-            if (facilidade ==1){
+            if (escolhaLista == 1){
                 System.out.println("Produtos registrados:");
                 for (Produto listaProdutos1: produtos) {
                     System.out.println("\n*********************");
@@ -458,7 +466,7 @@ public class Lobby {
                     System.out.println("*********************");
                 }
 
-            } else if (facilidade == 2){
+            } else if (escolhaLista == 2){
                 System.out.println("Produtos registrados:");
                 for (Produto listaProdutos2: produtos) {
                     System.out.println("\n*********************");
@@ -477,18 +485,20 @@ public class Lobby {
             String resposta = escolha.nextLine().toLowerCase();
 
             if (resposta.equals("0")){
-                confirmacaoParaSair = false;
+                continuarNaOpcao = false;
             }
-        } while (confirmacaoParaSair);
+        } while (continuarNaOpcao);
 
     }
 
     public static void buscarProduto(){
         Scanner scanner = new Scanner(System.in);
+        boolean produtoEncontrado = false;
+        boolean continuarNaOpcao = true;
         System.out.print("Digite o nome do produto: ");
         String nomeProcurado = scanner.nextLine();
-        boolean produtoEncontrado = false;
 
+        do {
             for (Produto procuraProduto : produtos) {
                 if (procuraProduto.getNomeProduto().equals(nomeProcurado)) {
                     produtoEncontrado = true;
@@ -508,6 +518,15 @@ public class Lobby {
             if (!produtoEncontrado){
                 System.out.println("\nProduto com o nome '" + nomeProcurado + "' não foi encontrado.");
             }
+
+            System.out.println("\n0-sair");
+            String resposta = scanner.nextLine().toLowerCase();
+
+            if (resposta.equals("0")){
+                continuarNaOpcao = false;
+            }
+
+        } while (continuarNaOpcao);
 
     }
 
@@ -538,6 +557,7 @@ public class Lobby {
                         System.out.println("Produto deletado com sucesso.");
                         return;
                     } else {
+                        produtoEncontrado = true;
                         break;
                     }
             }
@@ -549,7 +569,7 @@ public class Lobby {
 
     // AREA DOS METODOS PARA ESTOQUE!
 
-    /* Em algumas partes haverá uma linha vazia chamada "pegaDados.nextline()" depois de uma de outra comando para
+    /* Em algumas partes haverá uma linha vazia chamada "pegaDados.nextline()" depois de outro comando para
     inserir dados no console. Isso é para resolver outro bug.
     ex: veja a linha 708 e 709.
 
@@ -559,7 +579,7 @@ public class Lobby {
 
         String nomeProcurado;
         boolean produtoEncontrado = false;
-        boolean continuarCadastros = true;
+        boolean continuarCadastrando = true;
         Scanner pegaDados = new Scanner(System.in);
 
         do {
@@ -621,13 +641,13 @@ public class Lobby {
             String resposta2 = pegaDados.nextLine().toLowerCase();
 
             if (resposta2.equals("n")){
-                continuarCadastros = false;
+                continuarCadastrando = false;
             }
-        }while (continuarCadastros);
+        }while (continuarCadastrando);
     }
     public static void listarProdutosDisponiveis(){
         Scanner scanner = new Scanner(System.in);
-        boolean confirmacaoParaSair = true;
+        boolean continuarNaOpcao = true;
         System.out.println("************* Estoque Melhor Grupo ***********************");
 
         if (estoques.isEmpty()){
@@ -650,10 +670,10 @@ public class Lobby {
                 int resposta = scanner.nextInt();
 
                 if (resposta == 0){
-                    confirmacaoParaSair = false;
+                    continuarNaOpcao = false;
                 }
 
-            }while (confirmacaoParaSair);
+            }while (continuarNaOpcao);
 
         }
 
@@ -705,9 +725,9 @@ public class Lobby {
                             case 5:
                                 System.out.println("Preço: ");
                                 atualizaEstoque.setPrecoNoEstoque(pegaDados.nextDouble());
+                                pegaDados.nextLine();
                                 System.out.println("Armazem: ");
                                 atualizaEstoque.setArmazem(pegaDados.nextLine());
-                                pegaDados.nextLine();
                                 System.out.println("prateleira: ");
                                 atualizaEstoque.setNumeroDaPrateleira(pegaDados.nextLine());
                                 System.out.println("Quantiade: ");
@@ -758,7 +778,7 @@ public class Lobby {
                             System.out.println("Digite o valor que irá subtrair da quantidade atual: ");
                             novoValor = pegaDados.nextInt();
 
-                            // informa se tentarem por um valor maior que a quantidade tem.
+                            // informa e impede se tentarem por um valor maior que a quantidade tem.
                             if (novoValor > removeDoEstoque.getQuantidade()) {
                                 System.out.println("Número maior que o permitido.");
                                 // se tentarem por um valor negativo.
