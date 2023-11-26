@@ -732,6 +732,7 @@ public class Lobby {
                                 atualizaEstoque.setNumeroDaPrateleira(pegaDados.nextLine());
                                 System.out.println("Quantiade: ");
                                 atualizaEstoque.setQuantidade(pegaDados.nextInt());
+                                break;
                             case 0:
                                 System.out.println("voltando...");
                                 break;
