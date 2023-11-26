@@ -710,17 +710,21 @@ public class Lobby {
 
                             case 1:System.out.println("Preço: ");
                                 atualizaEstoque.setPrecoNoEstoque(pegaDados.nextDouble());
+                                System.out.println("\nProduto no estoque atualizado com sucesso!");
                                 break;
                             case 2:  System.out.println("Armazem: ");
                                 pegaDados.nextLine();
                                 atualizaEstoque.setArmazem(pegaDados.nextLine());
+                                System.out.println("\nProduto no estoque atualizado com sucesso!");
                                 break;
                             case 3: System.out.println("prateleira: ");
                                 pegaDados.nextLine();
                                 atualizaEstoque.setNumeroDaPrateleira(pegaDados.nextLine());
+                                System.out.println("\nProduto no estoque atualizado com sucesso!");
                                 break;
                             case 4: System.out.println("Quantiade: ");
                                 atualizaEstoque.setQuantidade(pegaDados.nextInt());
+                                System.out.println("\nProduto no estoque atualizado com sucesso!");
                                 break;
                             case 5:
                                 System.out.println("Preço: ");
@@ -732,17 +736,15 @@ public class Lobby {
                                 atualizaEstoque.setNumeroDaPrateleira(pegaDados.nextLine());
                                 System.out.println("Quantiade: ");
                                 atualizaEstoque.setQuantidade(pegaDados.nextInt());
+                                System.out.println("\nProduto no estoque atualizado com sucesso!");
                                 break;
                             case 0:
                                 System.out.println("voltando...");
                                 break;
-
                             default:
                                 System.out.println("Número inválido!");
                                 break;
                         }
-
-                        System.out.println("Produto no estoque atualizado com sucesso!");
 
                     }
 
