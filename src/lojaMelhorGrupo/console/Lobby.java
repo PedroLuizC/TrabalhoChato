@@ -216,58 +216,64 @@ public class Lobby {
     public static void listarFornecedor() {
         Scanner escolha = new Scanner(System.in);
         boolean continuarNaOpcao = true;
-        System.out.println("Deseja a lista: \n\n1- Simplificada. \n2- Detalhada. ");
-        int escolhaLista = escolha.nextInt();
-        escolha.nextLine();
-        // O "do" estar servindo aqui meramente para algo estetico. Onde a pessoa precisa apertar "zero" para sair.
 
+        if (fornecedores.isEmpty()){
+            System.out.println("Não há fornecedores cadastrados no momento.");
+        } else {
 
-        do {
+            System.out.println("Deseja a lista: \n\n1- Simplificada. \n2- Detalhada. ");
+            int escolhaLista = escolha.nextInt();
+            escolha.nextLine();
+            // O "do" estar servindo aqui meramente para algo estetico. Onde a pessoa precisa apertar "zero" para sair.
+            do {
              /* Aqui somente caso a pessoa queira uma lista simplificada ou completa.
                O que esse "Fornecedor forneceLista: fornecedores" está fazendo é a mesma coisa que:
                for(int i = 0; i < fornecedores; i++);
                ou seja, o for tá repetindo a busca e acrescentando um valor "i++" para pegar o proximo nome da lista.
 
             */
-            if (escolhaLista == 1) {
-                System.out.println("\nFornecedores registrados: ");
-                for (Fornecedor forneceLista : fornecedores) {
-                    System.out.println("\n*********************");
-                    System.out.println("Id:" + forneceLista.getId());
-                    System.out.println("Nome do fornecedor: " + forneceLista.getNomePessoal());
-                    System.out.println("CPF: " + forneceLista.getCpf());
-                    System.out.println("Email: " + forneceLista.getEmail());
-                    System.out.println("*********************");
-                }
+                if (escolhaLista == 1) {
+                    System.out.println("\nFornecedores registrados: ");
+                    for (Fornecedor forneceLista : fornecedores) {
+                        System.out.println("\n*********************");
+                        System.out.println("Id:" + forneceLista.getId());
+                        System.out.println("Nome do fornecedor: " + forneceLista.getNomePessoal());
+                        System.out.println("CPF: " + forneceLista.getCpf());
+                        System.out.println("Email: " + forneceLista.getEmail());
+                        System.out.println("*********************");
+                    }
 
-            } else if (escolhaLista == 2) {
-                System.out.println("Fornecedores registrados: ");
-                for (Fornecedor forneceLista : fornecedores) {
-                    System.out.println("\n*********************");
-                    System.out.println("Nome do fornecedor: " + forneceLista.getNomePessoal());
-                    System.out.println("Id:" + forneceLista.getId());
-                    System.out.println("CNPJ:" + forneceLista.getCnpj());
-                    System.out.println("Logradouro:" + forneceLista.getLogradouro());
-                    System.out.println("Bairro:" + forneceLista.getBairro());
-                    System.out.println("Cidade: " + forneceLista.getCidade());
-                    System.out.println("Estado: " + forneceLista.getEstado());
-                    System.out.println("CEP: " + forneceLista.getCep());
-                    System.out.println("CPF: " + forneceLista.getCpf());
-                    System.out.println("RG: " + forneceLista.getRg());
-                    System.out.println("Telefone: " + forneceLista.getTelefone());
-                    System.out.println("Email: " + forneceLista.getEmail());
-                    System.out.println("Data de nascimento: " + forneceLista.getDataNascimento());
-                    System.out.println("Data de cadastro: " + forneceLista.getDataCadastroFornecedor());
-                    System.out.println("*********************");
+                } else if (escolhaLista == 2) {
+                    System.out.println("Fornecedores registrados: ");
+                    for (Fornecedor forneceLista : fornecedores) {
+                        System.out.println("\n*********************");
+                        System.out.println("Nome do fornecedor: " + forneceLista.getNomePessoal());
+                        System.out.println("Id:" + forneceLista.getId());
+                        System.out.println("CNPJ:" + forneceLista.getCnpj());
+                        System.out.println("Logradouro:" + forneceLista.getLogradouro());
+                        System.out.println("Bairro:" + forneceLista.getBairro());
+                        System.out.println("Cidade: " + forneceLista.getCidade());
+                        System.out.println("Estado: " + forneceLista.getEstado());
+                        System.out.println("CEP: " + forneceLista.getCep());
+                        System.out.println("CPF: " + forneceLista.getCpf());
+                        System.out.println("RG: " + forneceLista.getRg());
+                        System.out.println("Telefone: " + forneceLista.getTelefone());
+                        System.out.println("Email: " + forneceLista.getEmail());
+                        System.out.println("Data de nascimento: " + forneceLista.getDataNascimento());
+                        System.out.println("Data de cadastro: " + forneceLista.getDataCadastroFornecedor());
+                        System.out.println("*********************");
+                    }
                 }
-            }
-            System.out.println("\n0-sair");
-            String resposta = escolha.nextLine().toLowerCase();
+                System.out.println("\n0-sair");
+                String resposta = escolha.nextLine().toLowerCase();
 
-            if (resposta.equals("0")){
-                continuarNaOpcao = false;
-            }
-        }while (continuarNaOpcao);
+                if (resposta.equals("0")){
+                    continuarNaOpcao = false;
+                }
+            }while (continuarNaOpcao);
+        }
+
+
 
     }
 
@@ -449,45 +455,51 @@ public class Lobby {
     public static void listarProdutos() {
         Scanner escolha = new Scanner(System.in);
         boolean continuarNaOpcao = true;
-        System.out.println("Deseja a lista:\n\n1-Simplificada.\n2-Detalhada. ");
-        int escolhaLista = escolha.nextInt();
-        escolha.nextLine();
 
-        do {
-            if (escolhaLista == 1){
-                System.out.println("Produtos registrados:");
-                for (Produto listaProdutos1: produtos) {
-                    System.out.println("\n*********************");
-                    System.out.println("Nome do produto: " + listaProdutos1.getNomeProduto());
-                    System.out.println("Id:" + listaProdutos1.getIdProduto());
-                    System.out.println("Preço: " + listaProdutos1.getPreco());
-                    System.out.println("Fornecedor: "+ listaProdutos1.getNomeFornecedor());
-                    System.out.println("Data: "+ listaProdutos1.getDataFormatadaProduto());
-                    System.out.println("*********************");
+
+        if (produtos.isEmpty()){
+            System.out.println("Não há produtos cadastrados no momento.");
+        } else {
+            System.out.println("Deseja a lista:\n\n1-Simplificada.\n2-Detalhada. ");
+            int escolhaLista = escolha.nextInt();
+            escolha.nextLine();
+
+            do {
+                if (escolhaLista == 1){
+                    System.out.println("Produtos registrados:");
+                    for (Produto listaProdutos1: produtos) {
+                        System.out.println("\n*********************");
+                        System.out.println("Nome do produto: " + listaProdutos1.getNomeProduto());
+                        System.out.println("Id:" + listaProdutos1.getIdProduto());
+                        System.out.println("Preço: " + listaProdutos1.getPreco());
+                        System.out.println("Fornecedor: "+ listaProdutos1.getNomeFornecedor());
+                        System.out.println("Data: "+ listaProdutos1.getDataFormatadaProduto());
+                        System.out.println("*********************");
+                    }
+
+                } else if (escolhaLista == 2){
+                    System.out.println("Produtos registrados:");
+                    for (Produto listaProdutos2: produtos) {
+                        System.out.println("\n*********************");
+                        System.out.println("Nome do produto: " + listaProdutos2.getNomeProduto());
+                        System.out.println("Id:" + listaProdutos2.getIdProduto());
+                        System.out.println("Código: " + listaProdutos2.getCodigo());
+                        System.out.println("Preço: " + listaProdutos2.getPreco());
+                        System.out.println("Descrição: "+ listaProdutos2.getDescricao());
+                        System.out.println("Fornecedor: "+ listaProdutos2.getNomeFornecedor());
+                        System.out.println("Data: "+ listaProdutos2.getDataFormatadaProduto());
+                        System.out.println("*********************");
+                    }
                 }
 
-            } else if (escolhaLista == 2){
-                System.out.println("Produtos registrados:");
-                for (Produto listaProdutos2: produtos) {
-                    System.out.println("\n*********************");
-                    System.out.println("Nome do produto: " + listaProdutos2.getNomeProduto());
-                    System.out.println("Id:" + listaProdutos2.getIdProduto());
-                    System.out.println("Código: " + listaProdutos2.getCodigo());
-                    System.out.println("Preço: " + listaProdutos2.getPreco());
-                    System.out.println("Descrição: "+ listaProdutos2.getDescricao());
-                    System.out.println("Fornecedor: "+ listaProdutos2.getNomeFornecedor());
-                    System.out.println("Data: "+ listaProdutos2.getDataFormatadaProduto());
-                    System.out.println("*********************");
+                System.out.println("\n0-sair");
+                String resposta = escolha.nextLine().toLowerCase();
+
+                if (resposta.equals("0")){
+                    continuarNaOpcao = false;
                 }
-            }
-
-            System.out.println("\n0-sair");
-            String resposta = escolha.nextLine().toLowerCase();
-
-            if (resposta.equals("0")){
-                continuarNaOpcao = false;
-            }
-        } while (continuarNaOpcao);
+            } while (continuarNaOpcao);
+        }
 
     }
 
